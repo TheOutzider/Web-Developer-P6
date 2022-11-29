@@ -6,10 +6,13 @@ const saucesCtrl = require("../controlers/sauces");
 const unique = require("../middleware/unique");
 
 router.get("/", auth, saucesCtrl.getAll);
+router.get("/:id", auth, saucesCtrl.getOne);
+
 router.post("/", auth, multer, unique, saucesCtrl.create);
-router.get("/:_id", auth, saucesCtrl.getOne);
-router.post("/:_id/like", auth, unique, saucesCtrl.like);
-router.delete("/:_id", auth, saucesCtrl.delete);
-router.put("/:_id", auth, multer, unique, saucesCtrl.modify);
+router.put("/:id", auth, multer, unique, saucesCtrl.modify);
+router.delete("/:id", auth, saucesCtrl.delete);
+
+router.post("/:id/like", auth, unique, saucesCtrl.like);
+router.post("/:id/dislike", auth, saucesCtrl.dislike);
 
 module.exports = router;

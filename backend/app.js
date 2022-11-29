@@ -1,24 +1,15 @@
 /** Require */
-
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const saucesRoutes = require("./routes/sauces");
 const userRoutes = require("./routes/user");
 const bodyParser = require("body-parser");
 const path = require("path");
-
 /** Constantes */
-
 const app = express();
-
 /** connextion à Mongo DataBase */
-mongoose
-  .connect(
-    "mongodb+srv://dbUser:9C5phvit7JbomU6Z@cluster0.pxgztpg.mongodb.net/?retryWrites=true&w=majority",
-    { useNewUrlParser: true, useUnifiedTopology: true }
-  )
-  .then(() => console.log("Connexion à MongoDB réussie !"))
-  .catch(() => console.log("Connexion à MongoDB échouée !"));
+mongoose.connect(process.env.MONCON_URL);
 
 /** Applications des Headers */
 
